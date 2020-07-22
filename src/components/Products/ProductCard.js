@@ -17,8 +17,7 @@ const buttonStyles = {
   display: 'block',
   fontSize: '13px',
   textAlign: 'center',
-  color: '#fff',
-  outline: 'none',
+  color: '#000',
   padding: '12px',
   boxShadow: '2px 5px 10px rgba(0,0,0,.1)',
   backgroundColor: 'rgb(255, 178, 56)',
@@ -66,14 +65,21 @@ const ProductCard = ({ product }) => {
   return (
     <div style={cardStyles}>
       <form onSubmit={handleSubmit}>
-        <h4>{product.name}</h4>
-        <select name="priceSelect">
-          {product.prices.map(price => (
-            <option key={price.id} value={price.id}>
-              {formatPrice(price.unit_amount, price.currency)}
-            </option>
-          ))}
-        </select>
+        <fieldset style={{ border: 'none' }}>
+          <legend>
+            <h4>{product.name}</h4>
+          </legend>
+          <label>
+            Price{' '}
+            <select name="priceSelect">
+              {product.prices.map(price => (
+                <option key={price.id} value={price.id}>
+                  {formatPrice(price.unit_amount, price.currency)}
+                </option>
+              ))}
+            </select>
+          </label>
+        </fieldset>
         <button
           disabled={loading}
           style={
